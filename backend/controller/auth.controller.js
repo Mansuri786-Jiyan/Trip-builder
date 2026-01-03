@@ -6,8 +6,8 @@ const JWT_EXPIRY = '7d';
 
 export const signUp = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -17,7 +17,7 @@ export const signUp = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-      name,
+      username,
       email,
       password: hashedPassword
     });
@@ -30,7 +30,7 @@ export const signUp = async (req, res) => {
 
     const safeUser = { 
       id: user._id, 
-      name: user.name, 
+      username: user.username, 
       email: user.email, 
       createdAt: user.createdAt 
     };
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
 
     const safeUser = { 
       id: user._id, 
-      name: user.name, 
+      username: user.username, 
       email: user.email, 
       createdAt: user.createdAt 
     };

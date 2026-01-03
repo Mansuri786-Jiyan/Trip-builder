@@ -13,7 +13,7 @@ tourRouter.get("/search", getTourbysearch);
 tourRouter.get("/search/featured", getFeaturedTours);
 tourRouter.get("/search/count", getTourCount);
 
-tourRouter.get('/:id', getTourById);
+tourRouter.get('/search/:id', getTourById);
 
 
 export default tourRouter;
