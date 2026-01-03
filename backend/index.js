@@ -10,6 +10,7 @@ import userRouter from './router/userRouter.js';
 import tourRouter from './router/tourRouter.js';
 import reviewRoutes from './router/reviewRouter.js';
 import bookingrout from './router/bookingrouter.js';
+import User from './model/userModel.js';
 const app = express();
 const corsOptions = {
     origin: true,
@@ -23,6 +24,14 @@ app.use(cors(corsOptions));
 const startServer = async () => {
     try {
         await dbConnection();
+
+        try {
+            await User.collection.dropIndex('name_1');
+        } catch (err) {
+            if (err.codeName !== 'IndexNotFound') {
+                console.error('Error dropping old name_1 index:', err);
+            }
+        }
         
         app.use('/api/auth', authRouter);
         app.use('/api/user', userRouter);
