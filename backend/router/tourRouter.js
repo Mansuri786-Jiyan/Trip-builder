@@ -3,10 +3,10 @@ import { createTour, updateTour , deleteTour, getAllTours, getTourById,getTourby
  
 const tourRouter = express.Router();
 
-tourRouter.post('/', createTour);
-tourRouter.put('/:id', updateTour);
-tourRouter.delete('/:id', deleteTour);
-tourRouter.get('/', getAllTours);
+tourRouter.post('/create', createTour);
+tourRouter.put('/update/:id', updateTour);
+tourRouter.delete('/delete/:id', deleteTour);
+tourRouter.get('/getalltour/', getAllTours);
 
 
 tourRouter.get("/search", getTourbysearch);
